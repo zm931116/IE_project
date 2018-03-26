@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.database.DonorManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +25,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -132,22 +135,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //get the current location and set the camera
         getDeviceLocation();
 
-        Donor tempDonor = new Donor(new LatLng(-37.795895,144.968803),"Church of All Nations ");
-        tempDonor.setDescription("Vouchers are available on\n" +
-                "a case by case basis. Tea,\n" +
-                "coffee, biscuits, newspapers\n" +
-                "and friendly welcome greet\n" +
-                "those waiting for assistance.");
-        tempDonor.setAvailableTime("Tue, Wed, Thu\n" +
-                "10am - 12pm\n" +
-                "Fresh food on Wednesdays");
-        tempDonor.setCostAndConditions("Free\n" +
-                "Fresh food $2 donation\n" +
-                "Healthcare/concession card\n" +
-                "holders");
-        googleMap.addMarker(new MarkerOptions().position(tempDonor.getCoordinate()).title(tempDonor.getName()).snippet(tempDonor.getDescription()+"\n"+tempDonor.getAvailableTime()+"\n"+
-        tempDonor.getCostAndConditions()))
-        ;
+        addMarkers(googleMap);
+
+    }
+
+    private void addMarkers(GoogleMap googleMap){
+        DonorManager donorManager = new DonorManager(this);
+       // ArrayList<Donor> donorList = donorManager.getAllDonors();
+        ArrayList<Donor> donorList = new ArrayList<>();
+        donorList.add(new Donor(new LatLng(-37.8045298,144.9798685),"Anglicare - Mission House","Food relief - food bank and" +
+                "food parcels " +
+                "Provides assistance to people " +
+                "living in public housing and " +
+                "rental properties with a " +
+                "Healthcare Card.\n"+"Tue and Thu " +
+                "1.30pm - 3.30pm" +
+                "Free\n" +
+                "Must live in following " +
+                "postcodes: 3000, 3051, 3053, " +
+                "3054, 3065, 3066, 3067, " +
+                "3068 and 3070"
+        ));
+        donorList.add(new Donor(new LatLng(-37.8018577,144.9817073),"Anglicare - St Marks Church Community Centre","Food parcels\n" +
+                "Proving comfort and stability" +
+                "in the form of food parcels" +
+                "and financial assistance" +
+                "for people experiencing" +
+                "homelessness.\nMon, Tue, Wed, Thu, Fri\n" +
+                "12pm - 3pm \nFree\n" +
+                "Rough sleepers and people " +
+                "experiencing chronic" +
+                "homelessness"));
+        for(Donor donor: donorList){
+            googleMap.addMarker(new MarkerOptions().position(donor.getCoordinate()).title(donor.getName()).snippet(donor.getDescription()));
+        }
+
 
     }
 

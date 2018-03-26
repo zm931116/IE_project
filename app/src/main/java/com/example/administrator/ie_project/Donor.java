@@ -12,6 +12,10 @@ public class Donor {
     private String description;
     private String availableTime;
 
+    public Donor() {
+
+    }
+
     public String getAvailableTime() {
         return availableTime;
     }
@@ -38,7 +42,11 @@ public class Donor {
         this.description = description;
     }
 
-
+    public Donor(LatLng coordinate, String name, String description) {
+        this.coordinate = coordinate;
+        this.name = name;
+        this.description = description;
+    }
 
     public Donor(LatLng coordinate, String name){
         this.coordinate = coordinate;
