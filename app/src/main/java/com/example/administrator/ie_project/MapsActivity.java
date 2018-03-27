@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.idescout.sql.SqlScoutServer;
 
 import java.util.ArrayList;
 
@@ -56,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SqlScoutServer.create(this,getPackageName());
 
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {

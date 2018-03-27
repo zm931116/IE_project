@@ -1,4 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">IE_project</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="status_code_sent">code had been sent</string>
+    <string name="status_verification_failed">verification failed</string>
+    <string name="status_verification_succeeded">verification_succeeded</string>
+    <string name="status_sign_in_failed">falied to sign in</string>
+    <string name="signed_out">signed out</string>
+    <string name="signed_in">stigned in</string>
+    <string name="instant_validation">what is this?</string>
+    <string name="firebase_status_fmt">fmt</string>
 </resources>
